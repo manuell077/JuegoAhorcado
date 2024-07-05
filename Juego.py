@@ -39,6 +39,7 @@ Lineas = MostrarLineas()
 def PonerLetras():
     contador = 0
     vidas = 3
+    contadorDeCaracteres = len(palabraSeleccionadaMin)
     global guardarPalabra
     
     
@@ -60,10 +61,18 @@ def PonerLetras():
                  
                  numeroIteracion = contador - 1
                  Lineas[numeroIteracion] = letra
+                 break
+                 
+                 
+           elif contador == contadorDeCaracteres:
+               vidas = vidas - 1
+               print("Las vidas son" , vidas)
+                
+                
            
+               
            
-           
-
+       
            
                
                
