@@ -5,16 +5,18 @@ from random import *
 
 palabras = ["Manuel","Carro","Perro"]
 
-cantidadElementos = len(palabras) - 1
-print(cantidadElementos)
+
+
 
 #funcion para mostrar las lineas de las palabras 
 def MostrarLineas():
     
+    cantidadElementos = len(palabras) - 1
     global palabraSeleccionadaMin
     
     listaEspacios = []
     palabra = randint(0,cantidadElementos)
+    
     palabraSeleccionada = palabras[palabra]
     palabraSeleccionadaMin = palabraSeleccionada.lower()
     
@@ -25,23 +27,24 @@ def MostrarLineas():
         listaEspacios.append("_")
     
     
-    print(palabraSeleccionadaMin)
+    
     
     return listaEspacios
 
 
-Lineas = MostrarLineas()
+
 
 
 
 #funcion para saber si la letra que ingreso es la correcta en caso de ser asi que mande la letra a la lista de espacios y remplaze el espacio por una letra
 
 def PonerLetras():
+    Lineas = MostrarLineas() 
     contador = 0
     vidas = 3
     contadorCaracteres = len(palabraSeleccionadaMin)
     estadoJuego = ""
-    
+    ListaApalabra = ""
     
     global guardarPalabra
     
@@ -49,9 +52,9 @@ def PonerLetras():
     
     
     while vidas != 0:
+       
        existePalabra = False
-       print(Lineas)
-           
+       print(Lineas)    
        letra = input("Dame una letra")
        letraMin = letra.lower()
        
@@ -64,18 +67,39 @@ def PonerLetras():
            
            contador += 1
            
+           
            if letraMin == x:
                  
+                
                  numeroIteracion = contador - 1
                  Lineas[numeroIteracion] = letra
                  existePalabra = True
-           
+                 ListaApalabra = "".join(Lineas)
+                 
+                 
+                 
+                 
            elif existePalabra == False and contador == contadorCaracteres:
                 vidas = vidas - 1
                 print("Vidas restantes",vidas)
-                        
-                 
+                
+       if ListaApalabra == palabraSeleccionadaMin:
+                   
+            break
+              
                     
+                
+    
+    if vidas == 0:
+        
+        estadoJuego = "Has perdido"
+        print("La palabra era ",palabraSeleccionadaMin)
+    else:
+        
+        estadoJuego = "Has ganado"                        
+        print("La palabra era ",palabraSeleccionadaMin)       
+          
+    return estadoJuego                
  
 def añadirLetra():
     
