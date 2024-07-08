@@ -39,19 +39,26 @@ Lineas = MostrarLineas()
 def PonerLetras():
     contador = 0
     vidas = 3
-    contadorDeCaracteres = len(palabraSeleccionadaMin)
+    contadorCaracteres = len(palabraSeleccionadaMin)
+    estadoJuego = ""
+    
+    
     global guardarPalabra
     
     
     
     
     while vidas != 0:
+       existePalabra = False
        print(Lineas)
            
        letra = input("Dame una letra")
        letraMin = letra.lower()
-       contador = 0
        
+       
+       
+       
+       contador = 0
        
        for x in palabraSeleccionadaMin:
            
@@ -61,27 +68,57 @@ def PonerLetras():
                  
                  numeroIteracion = contador - 1
                  Lineas[numeroIteracion] = letra
-                 break
+                 existePalabra = True
+           
+           elif existePalabra == False and contador == contadorCaracteres:
+                vidas = vidas - 1
+                print("Vidas restantes",vidas)
+                        
                  
+                    
+ 
+def añadirLetra():
+    
+    palabra = input("Añade una palabra a la lista ") 
+    
+    palabras.append(palabra)
+  
+                
+           
+def menu():
+    
+    mostrarMenu = True
+    
+    while  mostrarMenu == True:
+        
+        print("JUEGO DEL AHORCADO") 
+        print("1.Iniciar juego")
+        print("2.Añadir Palabras")
+        print("3.salir del juego")           
+           
+        opcionJuego = int(input("Que quieres hacer?"))   
+           
+        if   opcionJuego == 1:
+            
+            juego = PonerLetras()
+            print(juego) 
+        
+        elif opcionJuego == 2:     
                  
-           elif contador == contadorDeCaracteres:
-               vidas = vidas - 1
-               print("Las vidas son" , vidas)
-                
-                
-           
-               
-           
-       
-           
-               
-               
+            añadir = añadirLetra()
+            print(añadir)
+            
+        elif opcionJuego == 3:
+            
+            mostrarMenu = False         
+
+                   
               
            
+menu()
 
                
-juego = PonerLetras()
-print(juego)               
+              
                
             
        
